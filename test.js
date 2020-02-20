@@ -47,7 +47,6 @@ app.get("/students/:name", (req, res) => {
 // Adds data for a new student to our list of students.
 app.post("/students", (req, res) => {
   let newStudent = req.body;
-  console.log(newStudent);
   if (!newStudent.name) {
     const message = "Missing name in request body";
     res.status(400).send(message);
@@ -55,6 +54,8 @@ app.post("/students", (req, res) => {
     newStudent.id = uuid.v4();
     Students.push(newStudent);
     res.status(201).send(newStudent);
+    console.log(Students);
+
   }
 });
 
@@ -65,6 +66,8 @@ app.delete("/students/:id", (req, res) => {
   if (student) {
     Students.filter(function(obj) { return obj.id !== req.params.id });
     res.status(201).send("Student " + req.params.id + " was deleted.")
+    console.log(Students);
+
   }
 });
 
